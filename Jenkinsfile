@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('---clean---') {
+        stage('---compile---') {
             steps {
-                sh "mvn clean"
+                sh "mvn compile"
             }
         }
 		stage('---test---') {
@@ -12,9 +12,15 @@ pipeline {
                 sh "mvn test"
             }
         }
-		stage('---package---') {
+	    
+	     stage('---install---') {
             steps {
-                sh "mvn package"
+                sh "mvn install"
+            }
+        }
+		stage('---deploy---') {
+            steps {
+                sh "mvn deploy"
             }
         }
     }
